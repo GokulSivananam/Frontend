@@ -1,0 +1,72 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.Container {
+  display: flex;
+    
+  width: 100%;
+  height: 70vh;
+}
+section {
+  border: 2px solid darkblue;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.Dashboard h1 {
+  padding: 30px;
+  margin: 20px;
+  background-color: darkblue;
+  color: white;
+  border-radius: 20px;
+}
+.btnGroup {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.btnGroup button {
+  height: 130px;
+  width: 600px;
+  margin-top: 20px;
+  border-radius: 40px;
+  font-size: 50px;
+  font-weight: 800;
+  color: white;
+  border: 0px;
+}
+.mge {
+  background-color: green;
+}
+.viw {
+  background-color: red;
+}
+.EventCard {
+  border: 1px solid rgb(81, 0, 255);
+  border-radius: 7px;
+  margin: 20px;
+  padding: 20px;
+  width: 250px;
+}
+.EventCard button {
+  background-color: rgb(72, 0, 255);
+  height: 60px;
+  width: 210px;
+  margin: 10px;
+  border-radius: 20px;
+  font-size: larger;
+  font-weight: 700;
+  border: 0px;
+  color: white;
+}
+.Cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 29px;
+}
