@@ -9,11 +9,11 @@ const Header = () => {
         </NavLink>
        
         <div className="links">
-          <NavLink to={"/"}> Home </NavLink>
+          <NavLink to={"/home"}> Home </NavLink>
           <NavLink to={"/login"}>Login</NavLink>
           <NavLink to={"/add"}> Add</NavLink>
-          <NavLink to={"/edit"}> Edit </NavLink>
-          <NavLink to={"/viewall"}> View</NavLink>
+          <NavLink to={"/contact"}> Contact</NavLink>
+          <NavLink to={"/about"}> About</NavLink>
         </div>
       </header>
     </>

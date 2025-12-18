@@ -10,7 +10,10 @@ import { Edit } from "./Pages/Edit";
 import { View } from "./Pages/View";
 import { Login } from "./Pages/Login";
 import { ViewAll } from "./Pages/ViewAll";
-
+import { Contact } from "./Pages/Contact";
+import { About } from "./Pages/About";
+import { Home } from "./Pages/Home";
+import { Register } from "./Pages/Register";
 
 
 const routerVariable=createBrowserRouter([
@@ -19,12 +22,24 @@ const routerVariable=createBrowserRouter([
     element:<App></App>,
     children:[
       {
-        path:"/",
+        path:"/Home",
         element:<Dashboard />
       },
       {
         path:"/login",
         element:<Login></Login>
+      },
+        {
+        path:"/contact",
+        element:<Contact></Contact>
+      },
+      {
+        path:"/about",
+        element:<About></About>
+      },
+       {
+        path:"/",
+        element:<Home></Home>
       },
       {
         path:"/add",
@@ -35,11 +50,19 @@ const routerVariable=createBrowserRouter([
         element:<Edit></Edit>
       },
       {
+        path:"/edit/:id",
+        element:<Edit></Edit>
+      },
+         {
+        path:"/register",
+        element:<Register></Register>
+      },
+      {
         path:"/viewall",
         element:<ViewAll></ViewAll>
       },
       {
-        path:"viewall/view/:resId",
+        path:"/viewall/view/:resId",
         element:<View></View>
       },
       {

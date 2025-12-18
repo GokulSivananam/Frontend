@@ -1,0 +1,32 @@
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+}
+button{
+    height: 2   0px;
+    width: 150px;
+    margin-top: 20px;
+}
+input,select{
+    height: 30px;
+    padding: 2px;
+    width: 250px;
+    font-size: medium;
+}
+label{
+    font-weight: 800;
+    margin: 10px;
+}
+form button{
+    background-color: rgb(46, 101, 178);
+    color: white;
+    font-weight: 700;
+    height: 40px;   
+    width: 150px;
+    border-radius: 9px;
+    border: 0px;
+    margin-top: 20px;
+    margin-left: 50px;
+}

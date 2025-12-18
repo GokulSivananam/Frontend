@@ -15,19 +15,20 @@ export const Dashboard = () => {
             {data
               .filter((events) => events.id > 100 && events.id < 105)
               .map((data) => (
-                <div className="EventCard">
+                <div className="EventCard" key={data.id}>
                   <h3>{data.title}</h3>
                   <p>{data.description}</p>
-                  <p>{data.dueDate}</p>
-                  <button>View Event</button>
+                  <p>{data.date}</p>
+                  <NavLink to={`/viewall/view/${data.id}`}>
+                    <button>View Event</button>
+                  </NavLink>
                 </div>
               ))}
           </div>
         </section>
 
         <div className="btnGroup">
-         
-          <NavLink to={"/viewall"}> <button className="mge">Manage Events</button></NavLink>
+        
           <NavLink to={"/viewall"}><button className="viw">Viewall Events</button></NavLink>
           
         </div>
