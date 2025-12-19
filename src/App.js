@@ -11,11 +11,22 @@ function App() {
   useEffect(()=>{
     const FetchEventApi  = async ()=>{
       try{
-        const respose = await fetch("http://localhost:3000/Event.json");
-        const da=await respose.json();
-        setData(da)
+        const token = localStorage.getItem('token');
+        if (!token) {
+          setData([]);
+          return;
+        }
+        const respose = await fetch("https://backend-qg3x.onrender.com/api/events", {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        const result=await respose.json();
+        setData(Array.isArray(result.data) ? result.data : [])
       }
-      catch(err){}
+      catch(err){
+        setData([])
+      }
     };
     FetchEventApi()
     

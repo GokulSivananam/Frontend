@@ -5,7 +5,7 @@ export const View = () => {
   const { resId } = useParams();
   const { data } = useOutletContext();
   
-  const event = data.find(item => item.id === parseInt(resId));
+  const event = data.find(item => item._id === resId);
   
   if (!event) {
     return <h1 className="not-found">Event not found</h1>;
@@ -46,7 +46,7 @@ export const View = () => {
           <div className="detail-value">{event.createdBy}</div>
         </div>
         
-        <Link to={`/edit/${event.id}`}>
+        <Link to={`/edit/${event._id}`}>
           <button className="edit-button">
             Edit Event
           </button>

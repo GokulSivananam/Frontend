@@ -13,13 +13,13 @@ export const Dashboard = () => {
           <h2>UpComingEvents</h2>
           <div className="Cards">
             {data
-              .filter((events) => events.id > 100 && events.id < 105)
+              .slice(0, 3)
               .map((data) => (
                 <div className="EventCard" key={data.id}>
                   <h3>{data.title}</h3>
                   <p>{data.description}</p>
                   <p>{data.date}</p>
-                  <NavLink to={`/viewall/view/${data.id}`}>
+                  <NavLink to={`/viewall/view/${data._id}`}>
                     <button>View Event</button>
                   </NavLink>
                 </div>

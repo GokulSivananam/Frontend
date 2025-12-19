@@ -1,11 +1,13 @@
 import "../Styles/Add.css"
 import { useForm } from "react-hook-form";
-import { useParams, useOutletContext } from "react-router-dom";
-import { useEffect } from "react";
+import { useParams, useOutletContext, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const Edit = () => {
     const { id } = useParams();
     const { data } = useOutletContext();
+    const navigate = useNavigate();
+    const [user, setUser] = useState(null);
     
     const {
         register,
@@ -14,7 +16,23 @@ export const Edit = () => {
         formState: { errors },
     } = useForm();
 
-    const event = id ? data.find(item => item.id === parseInt(id)) : null;
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const userData = localStorage.getItem('user');
+        if (!token || !userData) {
+            navigate('/login');
+            return;
+        }
+        const parsedUser = JSON.parse(userData);
+        if (parsedUser.role !== 'admin') {
+            alert('Only admins can edit events');
+            navigate('/dashboard');
+            return;
+        }
+        setUser(parsedUser);
+    }, [navigate]);
+
+    const event = id ? data.find(item => item._id === id) : null;
 
     useEffect(() => {
         if (event) {
@@ -27,9 +45,26 @@ export const Edit = () => {
         }
     }, [event, setValue]);
 
-    const onSubmitHandle = (fdata) => {
-        console.log("Updated data:", fdata);
-        alert("Event updated successfully!");
+    const onSubmitHandle = async (fdata) => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`https://backend-qg3x.onrender.com/api/events/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(fdata)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                alert("Event updated successfully!");
+            } else {
+                alert("Failed: " + result.message);
+            }
+        } catch (error) {
+            alert("Error updating event: " + error.message);
+        }
     };
 
     if (!id) {

@@ -1,13 +1,15 @@
 import { useState } from "react";
 import "../Styles/Register.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: "",
+    role: "user"
   });
 
   const handleChange = (e) => {
@@ -17,14 +19,33 @@ export const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    console.log("Registration data:", formData);
-    alert("Registration successful!");
+    try {
+      const response = await fetch("https://backend-qg3x.onrender.com/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          role: formData.role
+        })
+      });
+      const result = await response.json();
+      if (response.ok) {
+        alert("Registration successful!");
+        navigate('/login');
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      alert('Registration failed');
+    }
   };
 
   return (
@@ -71,6 +92,17 @@ export const Register = () => {
           placeholder="Confirm your password"
           required
         />
+
+        <label>Role</label>
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+          required
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
 
         <button className="registerButton" type="submit">
           Register
